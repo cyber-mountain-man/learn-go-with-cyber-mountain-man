@@ -1,5 +1,9 @@
 # Binaries
 *.exe
+*.exe~
+*.dll
+*.so
+*.dylib
 *.test
 *.out
 
@@ -9,3 +13,16 @@
 # IDE files
 .vscode/
 .idea/
+
+# Dependency directories (remove the comment below to include it)
+# vendor/
+
+# Go workspace files
+go.work
+go.work.sum
+
+# Environment files
+.env
+
+# If you prefer the allow list template instead of the deny list, see:
+# https://github.com/github/gitignore/blob/main/community/Golang/Go.AllowList.gitignore
