@@ -1,8 +1,3 @@
-Got it! Here's your **cleaned-up and final version** of the `README.md` for `01-introduction-and-setup`, properly structured and formatted:
-
----
-
-```markdown
 # 01 - Introduction and Setup
 
 Welcome to your first step in learning Go! In this section, you'll install Go, set up your workspace, and run your first Go program to make sure everything is working.
