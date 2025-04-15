@@ -187,5 +187,5 @@ Hello, my name is Rosalina and I am 29 years old.
 ---
 
 🔁 Next:  
-Ready for `06-maps` or `06-loops`? Let’s continue building!
+Ready for `06-maps`? Let’s continue building!
 ```
