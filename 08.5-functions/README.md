@@ -1,14 +1,3 @@
-Absolutely, Guillermo — here’s your complete and polished `README.md` for:
-
-📁 `08.5-functions`
-
-It aligns perfectly with your enhanced `main.go` and maintains your consistent professional format across all lessons.
-
----
-
-### ✅ `08.5-functions/README.md`
-
-```markdown
 # 08.5 - Functions in Go
 
 Functions are the building blocks of Go programs. They allow you to break code into reusable, testable, and expressive units of logic. This lesson covers core function concepts every Go developer should know.
