@@ -1,0 +1,23 @@
+{{define "content"}}
+{{/* 
+  This block defines the "content" section that will be injected into layout.html.
+  It receives template data such as .User and .Title from your Go handler.
+*/}}
+
+<h2>Hello, {{.User}}! 👋</h2>
+
+<p>
+  This page is rendered using Go's <code>html/template</code> engine.
+  The values like <code>{{.User}}</code> are dynamic and injected from your Go code.
+</p>
+
+<p>
+  Templates are ideal for dashboards, admin panels, and server-side rendering tasks.
+</p>
+
+{{/* Example navigational links */}}
+<ul>
+  <li><a href="/public">Visit public route</a></li>
+  <li><a href="/private">Visit protected route</a></li>
+</ul>
+{{end}}

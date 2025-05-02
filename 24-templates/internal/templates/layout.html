@@ -1,0 +1,83 @@
+{{define "layout"}}
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+
+  {{/* Dynamic page title from handler data */}}
+  <title>{{.Title}}</title>
+
+  {{/* Embedded CSS for production-style layout */}}
+  <style>
+    body {
+      font-family: system-ui, sans-serif;
+      margin: 0;
+      padding: 0;
+      background: #f4f4f4;
+      color: #333;
+    }
+
+    header, footer {
+      background-color: #005f73;
+      color: white;
+      padding: 1em;
+      text-align: center;
+    }
+
+    main {
+      padding: 2em;
+      max-width: 800px;
+      margin: auto;
+      background: white;
+      box-shadow: 0 0 10px rgba(0,0,0,0.1);
+    }
+
+    a {
+      color: #0a9396;
+      text-decoration: none;
+    }
+
+    a:hover {
+      text-decoration: underline;
+    }
+  </style>
+</head>
+<body>
+
+  {{/* Shared header across all pages */}}
+  <header>
+    <h1>Cyber Mountain Portal</h1>
+    <p>🧠 Powered by Go Templates</p>
+  </header>
+
+  {{/* Inject page-specific content here from home.html or others */}}
+  <main>
+    {{template "content" .}}
+  </main>
+
+  {{/* Dynamic year footer */}}
+  <footer>
+    <small>&copy; {{.Year}} Guillermo Morrison</small>
+  </footer>
+
+</body>
+</html>
+{{end}}
+
+{{/* 
+🧠 LESSON 24 - TEMPLATE LAYOUT (HTML WRAPPER)
+
+✅ What This Teaches:
+- How to define a reusable layout using Go templates
+- How to pass shared data (like .Title, .User, .Year) into nested views
+- How to keep your HTML structure consistent across pages
+
+📦 What It Contains:
+- Embedded responsive CSS for a professional appearance
+- A dynamic title and footer year from Go data
+- Placeholder ({{template "content" .}}) for injecting content templates like home.html
+
+💡 Why This Matters:
+This mirrors real Go web apps — one layout, many pages. It’s clean, modular, and scalable.
+*/}}
