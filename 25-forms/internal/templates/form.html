@@ -1,0 +1,47 @@
+{{define "content"}}
+<h2>📝 Submit Your Feedback</h2>
+
+<p>Please fill out the form below. All fields are required.</p>
+
+<form method="POST" action="/submit" style="display: flex; flex-direction: column; gap: 1em; max-width: 500px;">
+  <label>
+    Name:
+    <input type="text" name="name" placeholder="Your full name" required style="width: 100%; padding: 0.5em;" />
+  </label>
+
+  <label>
+    Email:
+    <input type="email" name="email" placeholder="you@example.com" required style="width: 100%; padding: 0.5em;" />
+  </label>
+
+  <label>
+    Message:
+    <textarea name="message" placeholder="Write your message..." rows="5" required style="width: 100%; padding: 0.5em;"></textarea>
+  </label>
+
+  <button type="submit" style="padding: 0.75em; background: #0a9396; color: white; border: none; cursor: pointer;">
+    🚀 Submit
+  </button>
+</form>
+{{end}}
+
+{{/* 
+    🧠 LESSON 25 - FORM TEMPLATE (form.html)
+    
+    ✅ What This Teaches:
+    - How to structure semantic, accessible HTML forms
+    - How to bind <input>, <textarea>, and <button> to form handlers
+    - How to post data using `method="POST"` and `action="/submit"`
+    
+    📌 Field Details:
+    - All fields use `name=""` attributes to match keys in `r.FormValue("key")`
+    - `required` ensures basic browser-side validation
+    - Minimal CSS included inline for standalone functionality
+    
+    💡 Usage:
+    - Form content is injected into layout.html using {{template "content" .}}
+    - Customize layout styling globally — content remains reusable
+    
+    This template is ideal for feedback forms, user input, and more.
+    */}}
+    

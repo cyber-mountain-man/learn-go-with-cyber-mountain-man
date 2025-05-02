@@ -1,0 +1,81 @@
+{{define "layout"}}
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+
+  <title>{{.Title}}</title>
+
+  <!-- ✅ Minimal styling for production feel -->
+  <style>
+    body {
+      font-family: system-ui, sans-serif;
+      margin: 0;
+      padding: 0;
+      background: #f4f4f4;
+      color: #333;
+    }
+
+    header, footer {
+      background-color: #005f73;
+      color: white;
+      padding: 1em;
+      text-align: center;
+    }
+
+    main {
+      padding: 2em;
+      max-width: 800px;
+      margin: auto;
+      background: white;
+      box-shadow: 0 0 10px rgba(0,0,0,0.1);
+    }
+
+    a {
+      color: #0a9396;
+      text-decoration: none;
+    }
+
+    a:hover {
+      text-decoration: underline;
+    }
+  </style>
+</head>
+<body>
+  <!-- ✅ Shared header -->
+  <header>
+    <h1>Cyber Mountain Portal</h1>
+    <p>🧠 Powered by Go Templates</p>
+  </header>
+
+  <!-- ✅ Page content injected here -->
+  <main>
+    {{template "content" .}}
+  </main>
+
+  <!-- ✅ Footer with dynamic year -->
+  <footer>
+    <small>&copy; {{.Year}} Luigi Mario</small>
+  </footer>
+</body>
+</html>
+{{end}}
+
+
+{{/* 
+    🧠 LESSON 25 - TEMPLATE LAYOUT WRAPPER (layout.html)
+    
+    ✅ What You Learn:
+    - How to define a shared HTML structure for all pages
+    - How to inject page-specific content using {{template "content" .}}
+    - How to pass dynamic values like .Title and .Year from Go code
+    
+    📌 Real-World Use:
+    This structure keeps your layout DRY (don’t repeat yourself), modular, and maintainable.
+    You can change the look of every page just by editing this layout.
+    
+    💡 Tip:
+    Add things like navigation menus, flash messages, or metadata here as your app grows.
+    */}}
+    
