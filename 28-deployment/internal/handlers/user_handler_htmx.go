@@ -3,8 +3,9 @@ package handlers
 import (
 	"net/http"
 	"strconv"
-	"github.com/cyber-mountain-man/learn-go-with-cyber-mountain-man/28-deployment/internal/db"
 	"html/template"
+	"log"
+	"github.com/cyber-mountain-man/learn-go-with-cyber-mountain-man/28-deployment/internal/db"
 	"github.com/go-chi/chi/v5"
 )
 
@@ -20,62 +21,78 @@ func ListUsersHTMX(w http.ResponseWriter, r *http.Request) {
 }
 
 func CreateUserHTMX(w http.ResponseWriter, r *http.Request) {
-	err := r.ParseForm()
-	if err != nil {
+	if err := r.ParseForm(); err != nil {
 		http.Error(w, "Invalid form submission", http.StatusBadRequest)
 		return
 	}
 	name := r.FormValue("name")
 	email := r.FormValue("email")
 
-	err = db.InsertUser(name, email)
-	if err != nil {
+	if err := db.InsertUser(name, email); err != nil {
 		http.Error(w, "Failed to create user", http.StatusInternalServerError)
 		return
 	}
 
-	// ✅ Return updated user list
 	ListUsersHTMX(w, r)
 }
 
 func EditUserFormHTMX(w http.ResponseWriter, r *http.Request) {
 	idStr := chi.URLParam(r, "id")
-	id, _ := strconv.Atoi(idStr)
+	id, err := strconv.Atoi(idStr)
+	if err != nil {
+		http.Error(w, "Invalid user ID", http.StatusBadRequest)
+		return
+	}
+
 	user, err := db.GetUserByID(id)
 	if err != nil {
 		http.Error(w, "User not found", http.StatusNotFound)
 		return
 	}
-	templates.ExecuteTemplate(w, "user-edit.html", user)
+
+	err = templates.ExecuteTemplate(w, "user-edit.html", user)
+	if err != nil {
+		log.Println("Template execution error:", err) 
+		http.Error(w, "Template execution failed: "+err.Error(), http.StatusInternalServerError)
+	}
 }
+
 
 func UpdateUserHTMX(w http.ResponseWriter, r *http.Request) {
 	idStr := chi.URLParam(r, "id")
-	id, _ := strconv.Atoi(idStr)
-	err := r.ParseForm()
+	id, err := strconv.Atoi(idStr)
 	if err != nil {
+		http.Error(w, "Invalid user ID", http.StatusBadRequest)
+		return
+	}
+
+	if err := r.ParseForm(); err != nil {
 		http.Error(w, "Invalid form data", http.StatusBadRequest)
 		return
 	}
 	name := r.FormValue("name")
 	email := r.FormValue("email")
 
-	err = db.UpdateUser(id, name, email)
-	if err != nil {
+	if err := db.UpdateUser(id, name, email); err != nil {
 		http.Error(w, "Failed to update user", http.StatusInternalServerError)
 		return
 	}
+
 	ListUsersHTMX(w, r)
 }
 
 func DeleteUserHTMX(w http.ResponseWriter, r *http.Request) {
 	idStr := chi.URLParam(r, "id")
-	id, _ := strconv.Atoi(idStr)
-
-	err := db.DeleteUser(id)
+	id, err := strconv.Atoi(idStr)
 	if err != nil {
+		http.Error(w, "Invalid user ID", http.StatusBadRequest)
+		return
+	}
+
+	if err := db.DeleteUser(id); err != nil {
 		http.Error(w, "Failed to delete user", http.StatusInternalServerError)
 		return
 	}
+
 	ListUsersHTMX(w, r)
 }

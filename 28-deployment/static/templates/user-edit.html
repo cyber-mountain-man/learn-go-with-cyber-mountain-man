@@ -1,7 +1,8 @@
 <form 
   hx-put="/users/{{.ID}}" 
-  hx-target="#user-list" 
-  hx-swap="outerHTML"
+  hx-target="#user-list-wrapper" 
+  hx-swap="innerHTML"
+  hx-on::after-request="document.getElementById('edit-form').innerHTML = ''"
   class="edit-form"
 >
   <input type="text" name="name" value="{{.Name}}" required />
