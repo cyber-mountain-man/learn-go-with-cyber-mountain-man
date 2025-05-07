@@ -1,0 +1,21 @@
+# 🔨 Go build artifacts
+/app
+*.exe
+*.test
+*.out
+
+# 📦 Dependency cache
+vendor/
+
+# 🧬 Version control
+.git/
+.gitignore
+
+# 🧠 Editor/IDE configs
+.vscode/
+.idea/
+*.swp
+
+# 🔐 Environment files
+!.env        # include .env
+.env.*       # exclude all others

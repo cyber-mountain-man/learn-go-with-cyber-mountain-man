@@ -1,0 +1,10 @@
+<form 
+  hx-put="/users/{{.ID}}" 
+  hx-target="#user-list" 
+  hx-swap="outerHTML"
+  class="edit-form"
+>
+  <input type="text" name="name" value="{{.Name}}" required />
+  <input type="email" name="email" value="{{.Email}}" required />
+  <button type="submit">Save</button>
+</form>
