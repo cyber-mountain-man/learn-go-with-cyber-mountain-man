@@ -83,26 +83,27 @@ This project is fully containerized using Docker:
 ```
 ├── cmd/
 │   └── api/
-│       └── main.go              # Go app entry point
+│       └── main.go               # Go app entry point
 ├── internal/
 │   ├── db/
-│   │   └── db.go                # DB connection + queries
+│   │   └── db.go                 # DB connection + queries
 │   ├── handlers/
-│   │   └── user_handler_htmx.go # HTMX-compatible CRUD handlers
+│   │   └── user_handler_htmx.go  # HTMX-compatible CRUD handlers
 │   ├── models/
-│   │   └── user.go              # User struct
+│   │   └── user.go               # User struct
 │   └── router/
-│       └── router.go            # Chi router setup
+│       └── router.go             # Chi router setup
 ├── static/
-│   ├── index.html               # Main HTMX-powered frontend
+│   ├── index.html                # Main HTMX-powered frontend
 │   └── templates/
-│       └── user-list.html       # Server-side template fragment
+│       ├── user-list.html        # Template fragment for user list
+│       └── user-edit.html        # Template fragment for user edit form
 ├── mssql-init/
-│   └── init.sql                 # SQL to create DB, login, schema
-├── .env                         # DB connection values for Go app
-├── Dockerfile                   # Multi-stage Go + distroless build
-├── docker-compose.yml           # Dev environment orchestration
-└── README.md                    # This file
+│   └── init.sql                  # SQL to create DB, login, schema
+├── .env                          # DB connection values for Go app
+├── Dockerfile                    # Multi-stage Go + distroless build
+├── docker-compose.yml            # Dev environment orchestration
+└── README.md                     # This file
 ```
 
 ---
