@@ -1,3 +1,4 @@
+<!-- Update form: submits a PUT request to update the user -->
 <form 
   hx-put="/users/{{.ID}}" 
   hx-target="#user-list-wrapper" 
@@ -5,7 +6,25 @@
   hx-on::after-request="document.getElementById('edit-form').innerHTML = ''"
   class="edit-form"
 >
+  <!-- Pre-filled name input -->
   <input type="text" name="name" value="{{.Name}}" required />
+
+  <!-- Pre-filled email input -->
   <input type="email" name="email" value="{{.Email}}" required />
+
+  <!-- Submit button for saving changes -->
   <button type="submit">Save</button>
 </form>
+
+
+<!-- 
+🧠 Blurb: Purpose of This HTMX-Enabled Edit Form
+
+This form allows a user to update their name and email inline using HTMX. 
+When submitted:
+- It sends a PUT request to `/users/{id}` with the form data.
+- HTMX replaces the user list (`#user-list-wrapper`) with the updated list returned from the server.
+- The `after-request` handler clears the `#edit-form` div so the edit interface disappears after saving.
+
+This allows seamless, dynamic editing without a full page reload.
+-->

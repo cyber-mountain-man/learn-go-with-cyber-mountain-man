@@ -1,14 +1,20 @@
+{{/* Check if the user list is not empty */}}
 {{if .}}
+  {{/* Loop over each user in the slice */}}
   {{range .}}
     <div class="user" id="user-{{.ID}}">
       <span>{{.Name}} – {{.Email}}</span>
+
       <div class="actions">
+        <!-- Edit button: loads edit form for selected user -->
         <button
           class="edit"
           hx-get="/users/{{.ID}}/edit"
           hx-target="#edit-form"
           hx-swap="innerHTML"
         >Edit</button>
+
+        <!-- Delete button: sends DELETE request and refreshes user list -->
         <button
           class="delete"
           hx-delete="/users/{{.ID}}"
@@ -19,5 +25,18 @@
     </div>
   {{end}}
 {{else}}
+  <!-- Displayed if the user list is empty -->
   <p>No users found.</p>
 {{end}}
+
+
+<!-- 
+🧠 Blurb: Purpose of This Template
+
+This Go HTML template renders the user list and provides HTMX-powered buttons for each user:
+- The **Edit** button fetches and displays the edit form for a specific user in the `#edit-form` container.
+- The **Delete** button issues an HTTP DELETE request and replaces the entire user list on success.
+
+HTMX attributes (`hx-get`, `hx-delete`, `hx-target`, and `hx-swap`) make it possible to perform these dynamic interactions 
+without full-page reloads, enhancing responsiveness in a server-rendered environment.
+-->

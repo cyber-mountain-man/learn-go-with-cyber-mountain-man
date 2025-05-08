@@ -4,8 +4,16 @@
   <meta charset="UTF-8" />
   <meta name="viewport" content="width=device-width, initial-scale=1.0" />
   <title>HTMX User Management</title>
-  <script src="https://unpkg.com/htmx.org@2.0.4" integrity="sha384-HGfztofotfshcF7+8n44JQL2oJmowVChPTg48S+jvZoztPfvwD79OC/LTtG6dMp+" crossorigin="anonymous"></script>
+
+  <!-- HTMX for AJAX behavior using HTML attributes -->
+  <script src="https://unpkg.com/htmx.org@2.0.4" 
+          integrity="sha384-HGfztofotfshcF7+8n44JQL2oJmowVChPTg48S+jvZoztPfvwD79OC/LTtG6dMp+" 
+          crossorigin="anonymous"></script>
+
+  <!-- Google Fonts for styling -->
   <link href="https://fonts.googleapis.com/css?family=Roboto:400,700&display=swap" rel="stylesheet" />
+
+  <!-- Basic Styling -->
   <style>
     body {
       font-family: 'Roboto', sans-serif;
@@ -61,26 +69,37 @@
 <body>
   <h1>User Management (HTMX)</h1>
 
-  <!-- Add User Form -->
-  <form hx-post="/users" hx-trigger="submit" hx-target="#user-list-wrapper" hx-swap="innerHTML">
+  <!-- User creation form: sends POST to /users -->
+  <form 
+    hx-post="/users" 
+    hx-trigger="submit" 
+    hx-target="#user-list-wrapper" 
+    hx-swap="innerHTML"
+  >
     <input type="text" name="name" placeholder="Name" />
     <input type="email" name="email" placeholder="Email" />
     <button type="submit">Add User</button>
   </form>
 
-  <!-- Area for editing a user (populated via hx-get) -->
+  <!-- Placeholder for HTMX edit form -->
   <div id="edit-form"></div>
 
-  <!-- User List (wrapped to allow safe replacement) -->
-<div id="user-list-wrapper">
-  <div id="user-list" hx-get="/users" hx-trigger="load" hx-swap="outerHTML"></div>
-</div>
+  <!-- User list is fetched here on load -->
+  <div id="user-list-wrapper">
+    <div 
+      id="user-list" 
+      hx-get="/users" 
+      hx-trigger="load" 
+      hx-swap="outerHTML"
+    ></div>
+  </div>
 
-
+  <!-- JS fallback warning -->
   <noscript>
     <div style="color: red;">JavaScript is disabled. HTMX requires JS.</div>
   </noscript>
 
+  <!-- Debug log for confirmation HTMX is working -->
   <script>
     document.body.addEventListener("htmx:configRequest", function(evt) {
       console.log("HTMX is working 🚀", evt);
@@ -88,3 +107,18 @@
   </script>
 </body>
 </html>
+
+<!-- 
+Blurb: HTMX + Go Frontend
+
+This page serves as the user interface for the Go + HTMX app. 
+Key elements include:
+
+- An **add user form** that sends an HTMX-powered POST request.
+- An **edit form area** populated dynamically using `hx-get`.
+- A **user list** that loads when the page loads (`hx-trigger="load"`) and refreshes after changes.
+
+All interactions update the DOM live using `hx-swap`, without a full page reload.
+
+This approach demonstrates a **progressive enhancement** strategy where server-rendered HTML works seamlessly with AJAX-style interaction for a faster, smoother experience.
+-->
